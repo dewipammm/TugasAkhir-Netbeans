@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3686e72-3d02-4d19-9335-08575962fb9c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     penilaian.`id` AS penilaian_id,
+     penilaian.`tanggal` AS penilaian_tanggal,
+     sub_penilaian.`id` AS sub_penilaian_id,
+     sub_penilaian.`id_penilaian` AS sub_penilaian_id_penilaian,
+     sub_penilaian.`nama` AS sub_penilaian_nama,
+     sub_penilaian.`score` AS sub_penilaian_score,
+     sub_penilaian.`ranking` AS sub_penilaian_ranking
+FROM
+     `penilaian` penilaian INNER JOIN `sub_penilaian` sub_penilaian ON penilaian.`id` = sub_penilaian.`id_penilaian` WHERE penilaian.id = $P{id}]]>
+	</queryString>
+	<field name="penilaian_id" class="java.lang.Long"/>
+	<field name="penilaian_tanggal" class="java.sql.Date"/>
+	<field name="sub_penilaian_id" class="java.lang.Long"/>
+	<field name="sub_penilaian_id_penilaian" class="java.lang.Long"/>
+	<field name="sub_penilaian_nama" class="java.lang.String"/>
+	<field name="sub_penilaian_score" class="java.lang.Double"/>
+	<field name="sub_penilaian_ranking" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="c04a78c3-97d1-46e7-b523-3b67d4da6260"/>
+				<staticText>
+					<reportElement x="20" y="20" width="327" height="43" forecolor="#FFFFFF" uuid="645a26be-1568-46fc-8653-ab2b806f35d9"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Hasil Perangkingan]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="32a96720-54b5-4937-aeba-844c0a485cfb"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4676e16f-4409-48a3-bad0-3a9495c90741"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Alternatif]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f981bf27-e430-4852-9e34-b561ebf55d72"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Score]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3be6488d-8312-4ba3-b923-d9e38eb95526"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rangking]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="6f4962c9-0440-48ad-a3f2-5836aa1384bd"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="185" height="20" uuid="9580764d-1f72-43af-856b-ca0e0fd323c8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub_penilaian_nama}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="185" y="0" width="185" height="20" uuid="fd1c8d60-6500-477f-8e8e-70769b85b6bc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub_penilaian_score}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="370" y="0" width="185" height="20" uuid="4d249d60-82c4-47c1-936b-a1775feee890"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub_penilaian_ranking}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="7ed20911-9be5-4960-91cf-ad2c635327c5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="ee5b18d6-2070-4c6e-9085-107feb7c60c0"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="4fab2461-c088-4c68-81f4-c2194b2a6e54"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
